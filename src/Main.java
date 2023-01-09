@@ -39,31 +39,28 @@ public class Main {
                     quantityOfSymbolsOfWordsInRow += arrOfWords1[j].length();
                     quantityOfWords++;
                     quantityOfSpacesInOneRow = weight - quantityOfSymbolsOfWordsInRow;
-                    //sb.append(arrOfWords1[j]).append(" ");
-//                    if(j == arrOfWords1.length - 1){
-//                        //распечатка тут
-//                        quantityOfSymbols = 0;
-//                        for(int k = 0; quantityOfSymbols < weight && k < arrOfWords1.length; k++){
-//                            quantityOfSymbols += arrOfWords1[k].length();
-//                            int indents = quantityOfWords - 1;
-//                            int spacesBetweenWords = quantityOfSpacesInOneRow / indents;
-//                            int lastWordsWithMoreSpaces = quantityOfSpacesInOneRow % indents;
-//                            sb.append(arrOfWords1[k]);
-//                            for(int p = 0; p < spacesBetweenWords; p++){
-//                                sb.append(" ");
-//                            }
-//
-//                        }
-//                    }
+
                     if(j + 1 < arrOfWords1.length) {
                         if (quantityOfSymbols + arrOfWords1[j + 1].length() > weight) {
                             int m = j  - quantityOfWords;//индекс слова из массива слов параграфа
+                            int counter = 0;
                             for(int k = 0; k < quantityOfWords; k++){
+                                counter++;
                                 m++;
-                                sb.append(arrOfWords1[m]).append(" ");
+                                sb.append(arrOfWords1[m]);
                                 int indents = quantityOfWords - 1;//количество промежутков между словами
                                 int spacesBetweenWords = quantityOfSpacesInOneRow / indents;//количество пробелов между словами
-                                int lastWordsWithMoreSpaces = quantityOfSpacesInOneRow % indents;//количество последних слов между которыми кол-во пробелов должо быть на 1 больше чем между остальными в этой строке
+                                int lastIndentsWithLessSpaces = quantityOfSpacesInOneRow % indents;//колво промежутков с средним колвом пробелов
+                                if(counter < lastIndentsWithLessSpaces) {
+                                    for (int a = 0; a < spacesBetweenWords; a++) {
+                                        sb.append(" ");
+                                    }
+                                }
+                                else{
+                                    for(int b = 0; b < spacesBetweenWords + 1; b++){
+                                        sb.append(" ");
+                                    }
+                                }
 
                             }
                             quantityOfSpacesInOneRow = 0;
@@ -73,7 +70,7 @@ public class Main {
                             sb.append("\n");
                         }
                     }
-                    else if(j == arrOfWords1.length - 1){
+                    else if(j == arrOfWords1.length - 1){//для допечатки длинных абзацев строки которых переносятся из-за их размеры
                         for(int s = quantityOfWords - 1; s >= 0; s--){
                             sb.append(arrOfWords1[j - s]).append(" ");
                             int indents = quantityOfWords - 1;//количество промежутков между словами
