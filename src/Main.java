@@ -88,7 +88,7 @@ public class Main {
                                         }
                                     }
                                 }
-
+//
 
                             }
                             quantityOfSpacesInOneRow = 0;
