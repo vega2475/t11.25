@@ -50,17 +50,45 @@ public class Main {
                                 sb.append(arrOfWords1[m]);
                                 int indents = quantityOfWords - 1;//количество промежутков между словами
                                 int spacesBetweenWords = quantityOfSpacesInOneRow / indents;//количество пробелов между словами
-                                int lastIndentsWithLessSpaces = quantityOfSpacesInOneRow % indents;//колво промежутков с средним колвом пробелов
-                                if(counter < lastIndentsWithLessSpaces) {
-                                    for (int a = 0; a < spacesBetweenWords; a++) {
+                                int indentsWithAVGCountOfSpaces = quantityOfSpacesInOneRow % indents;//колво промежутков с средним колвом пробелов
+                                int indentsWithMinOrMaxCountOfSpaces = indents - indentsWithAVGCountOfSpaces;//кол-во промежутков которых меньшинство
+                                if(indentsWithAVGCountOfSpaces < indentsWithMinOrMaxCountOfSpaces && counter >= quantityOfWords - indentsWithMinOrMaxCountOfSpaces){
+                                    for(int a = 0; a < spacesBetweenWords; a++){
                                         sb.append(" ");
                                     }
                                 }
-                                else{
-                                    for(int b = 0; b < spacesBetweenWords + 1; b++){
+                                else if(indentsWithAVGCountOfSpaces < indentsWithMinOrMaxCountOfSpaces){//большинство максималок
+                                    for(int b = 0; b < spacesBetweenWords - 1; b++){
                                         sb.append(" ");
                                     }
                                 }
+
+
+
+                                if(indentsWithAVGCountOfSpaces > indentsWithMinOrMaxCountOfSpaces && counter < quantityOfWords - indentsWithMinOrMaxCountOfSpaces){
+                                    for(int a = 0; a < spacesBetweenWords; a++){
+                                        sb.append(" ");
+                                    }
+                                }
+                                else if(indentsWithAVGCountOfSpaces > indentsWithMinOrMaxCountOfSpaces){//большинство минималок
+                                    for(int c = 0; c < spacesBetweenWords + 1;c++){
+                                        sb.append(" ");
+                                    }
+                                }
+
+                                if(indentsWithAVGCountOfSpaces == indentsWithMinOrMaxCountOfSpaces){
+                                    if(counter * 2 < quantityOfWords){
+                                        for(int a = 0; a < spacesBetweenWords; a++){
+                                            sb.append(" ");
+                                        }
+                                    }
+                                    else{
+                                        for(int b = 0; b < spacesBetweenWords + 1; b++){
+                                            sb.append(" ");
+                                        }
+                                    }
+                                }
+
 
                             }
                             quantityOfSpacesInOneRow = 0;
