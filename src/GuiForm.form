@@ -34,7 +34,7 @@
           <component id="63f9a" class="javax.swing.JTextArea" binding="textArea2" default-binding="true">
             <constraints/>
             <properties>
-              <font name="JetBrains Mono"/>
+              <font name="Monospaced"/>
             </properties>
           </component>
         </children>
@@ -49,7 +49,7 @@
           <component id="84b75" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
             <constraints/>
             <properties>
-              <font name="JetBrains Mono"/>
+              <font name="Monospaced"/>
             </properties>
           </component>
         </children>
